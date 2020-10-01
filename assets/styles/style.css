@@ -1,0 +1,77 @@
+body {
+    background-color: #BBDEFB;
+}
+
+header {
+    background-color: #3F51B5;
+    height: 60px;
+    color: white;
+}
+
+.stats-wrapper {
+
+}
+
+.toolbar {
+    background-color: lightgray;
+    height: calc(100vh - 60px);
+}
+
+.object-list {
+    height: 350px;
+}
+
+.object-list__box {
+    background-color: white;
+    height: 80%;
+    /*overflow-x: hidden;*/
+    /*overflow-y: auto;*/
+}
+
+.guests-list__box {
+    overflow: scroll;
+    background-color: white;
+    height: 250px;
+}
+
+.trash-bin {
+    margin: 20px;
+    width: 35px;
+    height: 35px;
+}
+
+.table-rectangle {
+    width: 200px;
+}
+
+#draggable {font-size: x-large; border: thin solid black;
+    width: 5em; text-align: center; padding:10px}
+
+
+/*-----------MAIN PAGE--------------*/
+
+.follow-row {
+    margin-top: 10%;
+    height: 100px;
+}
+
+.create-row {
+}
+
+.main-button {
+    background-color: #3F51B5;
+    color: white;
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+    border-style: none;
+    margin: 15px;
+}
+
+.follow-input {
+    height: 50px;
+    margin: 15px;
+    border-radius: 10px;
+    border-style: none;
+}
+
