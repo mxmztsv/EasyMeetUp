@@ -8,6 +8,31 @@ header {
     color: white;
 }
 
+.main-field {
+    background-color: aqua;
+}
+
+.page {
+    max-height: 100vh;
+}
+
+.main-field {
+}
+
+.object-select {
+    color: #00897B;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    border-radius: 16px;
+    background: #80CBC4;
+}
+
+.add-btn {
+    background-color: #3F51B5;
+    margin: 0 10px;
+}
+
 .stats-wrapper {
 
 }
@@ -18,7 +43,8 @@ header {
 }
 
 .object-list {
-    height: 350px;
+    /*height: 350px;*/
+    padding: 20px;
 }
 
 .object-list__box {
@@ -41,7 +67,15 @@ header {
 }
 
 .table-rectangle {
+    background-color: #3F51B5;
     width: 200px;
+    height: 100px;
+    /*position: absolute;*/
+}
+
+.seat-circle {
+    width: 100px;
+    height: 100px;
 }
 
 #draggable {font-size: x-large; border: thin solid black;

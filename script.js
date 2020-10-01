@@ -1,3 +1,6 @@
+
+
+
 // $('.object').draggable({
 //     start: function() {
 //         const nextEl = $(this).next();
@@ -23,11 +26,11 @@
 // });
 
 
-$('#myModal').modal(options)
+// $('#myModal').modal(options)
 
-$('.object').click((e) => {
-    clone().appendTo('.object-list__box');
-})
+// $('.object').click((e) => {
+//     clone().appendTo('.object-list__box');
+// })
 
 
         //     let currentDroppable = null;
