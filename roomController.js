@@ -218,43 +218,47 @@ const roomId = localStorage.getItem('roomId')
 
         $('#registerButton').on('click', function () {
 
-            const name = $('#inputName').val()
-            const descript = $('#descriptionTextarea').val()
+            const name = $('#inputName').val().trim()
+            const descript = $('#descriptionTextarea').val().trim()
 
-            console.log(name)
-            console.log(descript)
+            if (name != null && name !== "") {
+                console.log(name)
+                console.log(descript)
 
 
-            const data = {
-                "fullName": name,
-                "description": descript
-            }
+                const data = {
+                    "fullName": name,
+                    "description": descript
+                }
 
-            console.log(data)
+                console.log(data)
 
-            const myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
+                const myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
 
-            const raw = JSON.stringify(data);
+                const raw = JSON.stringify(data);
 
-            const requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                redirect: 'follow',
-                body: raw,
-            };
+                const requestOptions = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    redirect: 'follow',
+                    body: raw,
+                };
 
-            const url = "https://easymeetup.herokuapp.com/room/" + roomId + "/" + choosenSeatId
+                const url = "https://easymeetup.herokuapp.com/room/" + roomId + "/" + choosenSeatId
 
-            fetch(url, requestOptions)
-                .then(response => response.text())
-                .then(result => {
-                    const message = result === "true" ? "Вы успешно зарегистрированы!" : "Ошибка! Похоже что место уже занято. Обновите страницу чтобы увидеть актуальную информацию."
-                    alert(message)
-                    location.reload();
-                    $("#myModal1").modal('hide');
-                })
-                .catch(error => console.log('error', error));
+                fetch(url, requestOptions)
+                    .then(response => response.text())
+                    .then(result => {
+                        const message = result === "true" ? "Вы успешно зарегистрированы!" : "Ошибка! Похоже что место уже занято. Обновите страницу чтобы увидеть актуальную информацию."
+                        alert(message)
+                        location.reload();
+                        $("#myModal1").modal('hide');
+                    })
+                    .catch(error => console.log('error', error));
+            } else alert("Поле ввода имени не может быть пустым")
+
+
 
 
 
