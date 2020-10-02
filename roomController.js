@@ -1,14 +1,36 @@
 $(document).ready(function () {
 
-    console.log('Salam')
+    // console.log('Salam')
 
-// const roomId = localStorage.getItem('roomId')
-const roomId = '306187'
+const roomId = localStorage.getItem('roomId')
+//     const roomId = '306187'
 // const test = localStorage.getItem('test')
 
     console.log(Number(roomId))
 
     getRoomStateAndRender(Number(roomId))
+
+    // let choosenSeatId;
+    //
+    // $('.main-field').on('click', function () {
+    //     alert('click')
+    //     // $('.seat-circle').removeClass('.seat-circle-target')
+    //     // $(this).addClass('.seat-circle-target')
+    //
+    //     // alert($(this).attr( "title" ))
+    //     alert($(this))
+    //     choosenSeatId = $(this).attr( "id" )
+    //     const isTaken = $(this).attr( "title" ) === "" ? false : true
+    //     // alert(isTaken)
+    //     if (!isTaken) {
+    //         $("#myModal1").modal('show');
+    //     }
+    // })
+
+    // alert('Salam')
+
+    // console.log('Salam')
+
 
     // console.log(roomState)
 
@@ -138,9 +160,9 @@ const roomId = '306187'
                     alert("Кажется команты с таким ID не существует : (")
                 } else {
                     const res = JSON.parse(result)
-                    alert(typeof res)
+                    // alert(typeof res)
                     localStorage.setItem('roomState', res);
-                    alert(localStorage.getItem('roomState'))
+                    // alert(localStorage.getItem('roomState'))
                     renderRoom(res)
                 }
             })
@@ -163,7 +185,7 @@ const roomId = '306187'
             const top = table.coordinates.top + 'px'
             const left = table.coordinates.left + 'px'
 
-            $('.main-field').append($(`<div class="object table-rectangle" style="position: absolute; top: ${top}; left: ${left}">Table</div>`))
+            $('.main-field').append($(`<div class="object table-rectangle" style="position: absolute; top: ${top}; left: ${left}">Стол</div>`))
         })
 
         chests.forEach(function (chest, i, chests) {
@@ -175,8 +197,69 @@ const roomId = '306187'
             const id = chest.chestId
             const title = chest.free ? "" : "Здесь сидит: " + chest.user.fullName + "\n" + "Описание: " + chest.user.description
 
-            $('.main-field').append($(`<div class="object seat-circle" id="${id}" title="${title}" style="position: absolute; top: ${top}; left: ${left}; background-color: ${color}">${label}</div>`))
+            $('.main-field').append($(`<div class="object seat-circle" id="${id}" title="${title}" style="position: absolute; top: ${top}; left: ${left}; background-color: ${color}; text-overflow: ellipsis;"></div>`))
         })
+
+        let choosenSeatId;
+
+        $('.seat-circle').on('click', function () {
+
+            // $('.seat-circle').removeClass('.seat-circle-target')
+            // $(this).addClass('.seat-circle-target')
+            // alert('salam')
+            // alert($(this).attr( "title" ))
+            choosenSeatId = $(this).attr( "id" )
+            const isTaken = $(this).attr( "title" ) === "" ? false : true
+            // alert(isTaken)
+            if (!isTaken) {
+                $("#myModal1").modal('show');
+            }
+        })
+
+        $('#registerButton').on('click', function () {
+
+            const name = $('#inputName').val()
+            const descript = $('#descriptionTextarea').val()
+
+            console.log(name)
+            console.log(descript)
+
+
+            const data = {
+                "fullName": name,
+                "description": descript
+            }
+
+            console.log(data)
+
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            const raw = JSON.stringify(data);
+
+            const requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                redirect: 'follow',
+                body: raw,
+            };
+
+            const url = "https://easymeetup.herokuapp.com/room/" + roomId + "/" + choosenSeatId
+
+            fetch(url, requestOptions)
+                .then(response => response.text())
+                .then(result => {
+                    const message = result === "true" ? "Вы успешно зарегистрированы!" : "Ошибка! Похоже что место уже занято. Обновите страницу чтобы увидеть актуальную информацию."
+                    alert(message)
+                    location.reload();
+                    $("#myModal1").modal('hide');
+                })
+                .catch(error => console.log('error', error));
+
+
+
+        })
+
     }
 
     // const roomName = roomState.roomName;
@@ -207,86 +290,59 @@ const roomId = '306187'
     //     $('.main-field').append($(`<div class="object seat-circle" id="${id}" title="${title}" style="position: absolute; top: ${top}; left: ${left}; background-color: ${color}">${label}</div>`))
     // })
 
-    let choosenSeatId;
+    // let choosenSeatId;
+    //
+    // $('.seat-circle').on('click', function () {
+    //
+    //     // $('.seat-circle').removeClass('.seat-circle-target')
+    //     // $(this).addClass('.seat-circle-target')
+    //     alert('salam')
+    //     // alert($(this).attr( "title" ))
+    //     choosenSeatId = $(this).attr( "id" )
+    //     const isTaken = $(this).attr( "title" ) === "" ? false : true
+    //     // alert(isTaken)
+    //     if (!isTaken) {
+    //         $("#myModal1").modal('show');
+    //     }
+    // })
 
-    $('.seat-circle').on('click', function () {
-        $('.seat-circle').removeClass('.seat-circle-target')
-        $(this).addClass('.seat-circle-target')
-        // alert('salam')
-        // alert($(this).attr( "title" ))
-        choosenSeatId = $(this).attr( "id" )
-        const isTaken = $(this).attr( "title" ) === "" ? false : true
-        // alert(isTaken)
-        if (!isTaken) {
-            $("#myModal1").modal('show');
-        }
-    })
-
-    $('#registerButton').on('click', function () {
-
-        const name = $('#inputName').val()
-        const descript = $('#descriptionTextarea').val()
-
-        console.log(name)
-        console.log(descript)
-
-
-        const data = {
-                "fullName": name,
-                "description": descript
-        }
-
-        console.log(data)
-
-        // const chests = []
-        // $('.seat-circle').each(function(i,elem) {
-        //     chests.push({
-        //         'chestId' : i,
-        //         'coordinates': $(elem).position(),
-        //         'free': true,
-        //         'user':{},
-        //     })
-        // });
-        //
-        // const tables = []
-        //
-        // $('.table-rectangle').each(function(i,elem) {
-        //     tables.push({
-        //         'coordinates': $(elem).position(),
-        //     })
-        // });
-        //
-        // const data = {
-        //     'chests': chests,
-        //     'tables': tables,
-        //     'id': -1,
-        // }
-        //
-        // let newRoomState = JSON.stringify(data);
-        // console.log(newRoomState)
-        //
-        //
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-
-        const raw = JSON.stringify(data);
-
-        const requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            redirect: 'follow',
-            body: raw,
-        };
-
-        const url = "https://easymeetup.herokuapp.com/room/" + roomId + "/" + choosenSeatId
-
-        fetch(url, requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
-
-
-
-    })
+    // $('#registerButton').on('click', function () {
+    //
+    //     const name = $('#inputName').val()
+    //     const descript = $('#descriptionTextarea').val()
+    //
+    //     console.log(name)
+    //     console.log(descript)
+    //
+    //
+    //     const data = {
+    //         "fullName": name,
+    //         "description": descript
+    //     }
+    //
+    //     console.log(data)
+    //
+    //     const myHeaders = new Headers();
+    //     myHeaders.append("Content-Type", "application/json");
+    //
+    //     const raw = JSON.stringify(data);
+    //
+    //     const requestOptions = {
+    //         method: 'POST',
+    //         headers: myHeaders,
+    //         redirect: 'follow',
+    //         body: raw,
+    //     };
+    //
+    //     const url = "https://easymeetup.herokuapp.com/room/" + roomId + "/" + choosenSeatId
+    //
+    //     fetch(url, requestOptions)
+    //         .then(response => response.text())
+    //         .then(result => console.log(result))
+    //         .catch(error => console.log('error', error));
+    //
+    //
+    //
+    // })
 
 })
