@@ -30,7 +30,7 @@ $(document).ready(function () {
                 .then(result => {
                     // console.log(result)
                     if (result === "" || result === null || result === undefined) {
-                        alert("Кажется команты с таким ID не существует : (")
+                        alert("Кажется комнаты с таким ID не существует : (")
                     } else {
                         const res = JSON.parse(result)
                         // alert(res)
