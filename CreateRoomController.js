@@ -54,66 +54,44 @@ $(document).ready(function () {
             })
         });
 
-        const data = {
-            'id': -1,
-            'roomName': $('#inputRoomName').val(),
-            'chests': chests,
-            'tables': tables,
-        }
+        const roomName = $('#inputRoomName').val().trim()
 
-        let newRoomState = JSON.stringify(data);
-        console.log(newRoomState)
+        if (roomName != null && roomName !== "") {
+            const data = {
+                'id': -1,
+                'roomName': roomName,
+                'chests': chests,
+                'tables': tables,
+            }
+
+            let newRoomState = JSON.stringify(data);
+            console.log(newRoomState)
 
 
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
 
-        var raw = JSON.stringify(data);
+            const raw = JSON.stringify(data);
 
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
+            const requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
 
-        fetch("https://easymeetup.herokuapp.com/newroom", requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                console.log(typeof result)
-                const message = typeof result ? "Комната успешно создана, ее номер: " + result : "Ошибка создания комнаты, кажется что то пошло не так..."
-                alert(message)
-                document.location.href = "/index.html";
-                $("#myModal").modal('hide');
-            })
-            .catch(error => console.log('error', error));
+            fetch("https://easymeetup.herokuapp.com/newroom", requestOptions)
+                .then(response => response.text())
+                .then(result => {
+                    console.log(typeof result)
+                    const message = typeof result ? "Комната успешно создана, ее номер: " + result : "Ошибка создания комнаты, кажется что то пошло не так..."
+                    alert(message)
+                    document.location.href = "/index.html";
+                    $("#myModal").modal('hide');
+                })
+                .catch(error => console.log('error', error));
+        } else alert("Введите название комнаты")
 
-        // var settings = {
-        //     "url": "https://easymeetup.herokuapp.com/newroom",
-        //     "method": "POST",
-        //     "timeout": 0,
-        //     "headers": {
-        //         "Content-Type": "application/json"
-        //     },
-        //     "data": JSON.stringify(data),
-        // };
-        //
-        // $.ajax(settings).done(function (response) {
-        //     console.log(response);
-        // });
-
-        // $.ajax ({
-        //     url: 'https://easymeetup.herokuapp.com/newroom',
-        //     type: 'POST',
-        //     headers: {
-        //
-        //     },
-        //     cache: false,
-        //     data: data,
-        //     success: function (response) {
-        //         alert(response)
-        //     }
-        // })
 
     })
 

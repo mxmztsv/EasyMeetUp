@@ -11,7 +11,7 @@ $(document).ready(function () {
         console.log(roomId)
         // sessionStorage.setItem('roomId', roomId);
 
-        if (!isNaN(roomId) && roomId != "") {
+        if (!isNaN(roomId) && roomId !== "") {
             const myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
 
@@ -42,7 +42,7 @@ $(document).ready(function () {
                     }
                 })
                 .catch(error => console.log('error', error));
-        }
+        } else alert("Номер комнаты должен состоять из 6 цифр")
 
 
 
