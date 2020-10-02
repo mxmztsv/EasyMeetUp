@@ -51,9 +51,10 @@ $(document).ready(function () {
         });
 
         const data = {
+            'id': -1,
+            'roomName': $('#inputRoomName').val(),
             'chests': chests,
             'tables': tables,
-            'id': -1,
         }
 
         let newRoomState = JSON.stringify(data);

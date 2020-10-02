@@ -1,6 +1,56 @@
 $(document).ready(function () {
 
-const roomState = localStorage.getItem('roomState')
+const roomState = JSON.parse(localStorage.getItem('roomState'))
+// const test = localStorage.getItem('test')
+
+    console.log(roomState)
+
+    // const roomState = {
+    //     "roomId": 464417,
+    //     "roomName": "My Room",
+    //     "chests": [
+    //         {
+    //             "chestId": 0,
+    //             "coordinates": {
+    //                 "top": 239.0,
+    //                 "left": 209.0
+    //             },
+    //             "free": true,
+    //             "user": {
+    //                 "fullName": null,
+    //                 "description": null
+    //             }
+    //         },
+    //         {
+    //             "chestId": 1,
+    //             "coordinates": {
+    //                 "top": 242.0,
+    //                 "left": 505.0
+    //             },
+    //             "free": true,
+    //             "user": {
+    //                 "fullName": null,
+    //                 "description": null
+    //             }
+    //         }
+    //     ],
+    //     "tables": [
+    //         {
+    //             "coordinates": {
+    //                 "top": 122.0,
+    //                 "left": 143.0
+    //             }
+    //         },
+    //         {
+    //             "coordinates": {
+    //                 "top": 128.0,
+    //                 "left": 437.0
+    //             }
+    //         }
+    //     ]
+    // }
+
+
     // const roomState = {
     //     "roomId": 444251,
     //     "roomName": "Test Room",
