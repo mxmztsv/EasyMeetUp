@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-
+const roomState = localStorage.getItem('roomState')
     // const roomState = {
     //     "roomId": 444251,
     //     "roomName": "Test Room",
