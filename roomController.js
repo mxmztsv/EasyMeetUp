@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-const roomState = JSON.parse(localStorage.getItem('roomState'))
+const roomState = JSON.parse(sessionStorage.getItem('roomState'))
 // const test = localStorage.getItem('test')
 
     console.log(roomState)
