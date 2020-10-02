@@ -185,7 +185,7 @@ const roomId = localStorage.getItem('roomId')
             const top = table.coordinates.top + 'px'
             const left = table.coordinates.left + 'px'
 
-            $('.main-field').append($(`<div class="object table-rectangle" style="position: absolute; top: ${top}; left: ${left}">Table</div>`))
+            $('.main-field').append($(`<div class="object table-rectangle" style="position: absolute; top: ${top}; left: ${left}">Стол</div>`))
         })
 
         chests.forEach(function (chest, i, chests) {
@@ -197,7 +197,7 @@ const roomId = localStorage.getItem('roomId')
             const id = chest.chestId
             const title = chest.free ? "" : "Здесь сидит: " + chest.user.fullName + "\n" + "Описание: " + chest.user.description
 
-            $('.main-field').append($(`<div class="object seat-circle" id="${id}" title="${title}" style="position: absolute; top: ${top}; left: ${left}; background-color: ${color}; text-overflow: ellipsis;">${label}</div>`))
+            $('.main-field').append($(`<div class="object seat-circle" id="${id}" title="${title}" style="position: absolute; top: ${top}; left: ${left}; background-color: ${color}; text-overflow: ellipsis;"></div>`))
         })
 
         let choosenSeatId;
@@ -251,6 +251,7 @@ const roomId = localStorage.getItem('roomId')
                 .then(result => {
                     const message = result ? "Вы успешно зарегистрированы!" : "Ошибка! Похоже что место уже занято. Обновите страницу чтобы увидеть актуальную информацию."
                     alert(message)
+                    location.reload();
                     $("#myModal1").modal('hide');
                 })
                 .catch(error => console.log('error', error));

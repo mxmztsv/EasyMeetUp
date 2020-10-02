@@ -5,7 +5,7 @@ $(document).ready(function () {
         console.log(selectedObject)
         switch (selectedObject) {
             case 'table':
-                $('.main-field').append($('<div class="object table-rectangle">Стол</div>').draggable({
+                $('.main-field').append($('<div class="object table-rectangle" style="position: absolute">Стол</div>').draggable({
                     start: function() {
 
                     },
@@ -17,7 +17,7 @@ $(document).ready(function () {
                 ))
                 break;
             case 'seat':
-                $('.main-field').append($('<div class="object seat-circle"></div>').draggable({
+                $('.main-field').append($('<div class="object seat-circle" style="position: absolute"></div>').draggable({
                     start: function() {
 
                     },
@@ -83,6 +83,7 @@ $(document).ready(function () {
                 console.log(typeof result)
                 const message = typeof result ? "Комната успешно создана, ее номер: " + result : "Ошибка создания комнаты, кажется что то пошло не так..."
                 alert(message)
+                document.location.href = "/index.html";
                 $("#myModal").modal('hide');
             })
             .catch(error => console.log('error', error));

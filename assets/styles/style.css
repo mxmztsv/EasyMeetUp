@@ -137,8 +137,8 @@ header {
 
 .object {
     position: absolute;
-    top: 70px;
-    left: 100px;
+    top: 120px;
+    left: 120px;
 }
 
 #draggable {font-size: x-large; border: thin solid black;
@@ -170,5 +170,9 @@ header {
     margin: 15px;
     border-radius: 10px;
     border-style: none;
+}
+
+.disclaimer {
+    color: #303F9F;
 }
 
