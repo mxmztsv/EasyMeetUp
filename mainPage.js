@@ -33,7 +33,7 @@ $(document).ready(function () {
                         alert("Кажется команты с таким ID не существует : (")
                     } else {
                         sessionStorage.setItem('roomState', result);
-                        // document.location.href = "/room.html";
+                        document.location.href = "/room.html";
                     }
                 })
                 .catch(error => console.log('error', error));
