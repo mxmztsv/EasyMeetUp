@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    console.log('Salam')
+
 const roomId = localStorage.getItem('roomId')
 // const test = localStorage.getItem('test')
 
