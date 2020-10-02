@@ -249,7 +249,7 @@ const roomId = localStorage.getItem('roomId')
             fetch(url, requestOptions)
                 .then(response => response.text())
                 .then(result => {
-                    const message = result ? "Вы успешно зарегистрированы!" : "Ошибка! Похоже что место уже занято. Обновите страницу чтобы увидеть актуальную информацию."
+                    const message = result === "true" ? "Вы успешно зарегистрированы!" : "Ошибка! Похоже что место уже занято. Обновите страницу чтобы увидеть актуальную информацию."
                     alert(message)
                     location.reload();
                     $("#myModal1").modal('hide');
