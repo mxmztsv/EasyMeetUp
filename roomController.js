@@ -1,90 +1,165 @@
 $(document).ready(function () {
 
-    $('#addObjectButton').on('click', function () {
-        const selectedObject = $('#object-select').val()
-        console.log(selectedObject)
-        switch (selectedObject) {
-            case 'table':
-                $('.main-field').append($('<div class="object table-rectangle">Table</div>').draggable({
-                    start: function() {
 
-                    },
-                    stop: function() {
-                        console.log('coords:',$('.object').position())
-                    },
-                    containment: '.main-field'
-                    }
-                ))
-                break;
-            case 'seat':
-                $('.main-field').append($('<div class="object seat-circle"><img src="assets/img/circle.svg"></div>').draggable({
-                    start: function() {
+    // const roomState = {
+    //     "roomId": 444251,
+    //     "roomName": "Test Room",
+    //     "chests":[
+    //     {"chestId":0,
+    //         "coordinates":{"top":339,"left":74},
+    //         "free":true,
+    //         "user":{}
+    //         },
+    //         {"chestId":1,
+    //             "coordinates":{"top":147,"left":69},
+    //             "free":true,
+    //             "user":{}
+    //             },
+    //         {"chestId":2,
+    //             "coordinates":{"top":339,"left":391},
+    //             "free":true,
+    //             "user":{}
+    //             },
+    //         {"chestId":3,
+    //             "coordinates":{"top":144,"left":386},
+    //             "free":true,
+    //             "user":{}
+    //             },
+    //         {"chestId":4,
+    //             "coordinates":{"top":141,"left":821},
+    //             "free":true,
+    //             "user":{}
+    //             },
+    //         {"chestId":5,
+    //             "coordinates":{"top":148,"left":511},
+    //             "free":false,
+    //             "user": {
+    //                 "fullName": "Akchur Ren",
+    //                 "description": "Desc 1323132"
+    //             }
+    //             },
+    //         {"chestId":6,
+    //             "coordinates":{"top":343,"left":515},
+    //             "free":true,
+    //             "user":{}
+    //             },
+    //         {"chestId":7,
+    //             "coordinates":{"top":340,"left":824},
+    //             "free":false,
+    //             "user": {
+    //                 "fullName": "Иннокентий",
+    //                 "description": "люблю пиво"
+    //             }
+    //         }
+    //         ],
+    //     "tables":[
+    //         {"coordinates":{"top":148,"left":185}},
+    //         {"coordinates":{"top":149,"left":617}},
+    //         {"coordinates":{"top":340,"left":185}},
+    //         {"coordinates":{"top":338,"left":619}}],
+    // };
 
-                    },
-                    stop: function() {
-                        console.log('coords:',$(this).position())
-                    },
-                    containment: '.main-field'
-                }))
-                break;
-        }
+    const roomName = roomState.roomName;
+    const roomId = roomState.roomId;
+    const chests = roomState.chests;
+    const tables = roomState.tables;
 
+    $('#roomId').text(roomId)
+    $('#eventName').text(roomName)
+
+    tables.forEach(function (table, i, tables) {
+        console.log('coords', table.coordinates)
+        const top = table.coordinates.top + 'px'
+        const left = table.coordinates.left + 'px'
+
+        $('.main-field').append($(`<div class="object table-rectangle" style="position: absolute; top: ${top}; left: ${left}">Table</div>`))
     })
 
-    $('#createRoomButton').on('click', function () {
-        const chests = []
-        $('.seat-circle').each(function(i,elem) {
-            chests.push({
-                'chestId' : i,
-                'coordinates': $(elem).position(),
-                'free': true,
-                'user':{},
-            })
-        });
+    chests.forEach(function (chest, i, chests) {
+        console.log('coords', chest.coordinates)
+        const top = chest.coordinates.top + 'px'
+        const left = chest.coordinates.left + 'px'
+        const label = chest.free ? "": chest.user.fullName
+        const color = chest.free ? '#7986CB' : '#b71c1c'
+        const id = chest.chestId
+        const title = chest.free ? "" : "Здесь сидит: " + chest.user.fullName + "\n" + "Описание: " + chest.user.description
 
-        const tables = []
+        $('.main-field').append($(`<div class="object seat-circle" id="${id}" title="${title}" style="position: absolute; top: ${top}; left: ${left}; background-color: ${color}">${label}</div>`))
+    })
 
-        $('.table-rectangle').each(function(i,elem) {
-            tables.push({
-                'coordinates': $(elem).position(),
-            })
-        });
+    let choosenSeatId;
 
+    $('.seat-circle').on('click', function () {
+        $('.seat-circle').removeClass('.seat-circle-target')
+        $(this).addClass('.seat-circle-target')
+        // alert('salam')
+        // alert($(this).attr( "title" ))
+        choosenSeatId = $(this).attr( "id" )
+        const isTaken = $(this).attr( "title" ) === "" ? false : true
+        // alert(isTaken)
+        if (!isTaken) {
+            $("#myModal1").modal('show');
+        }
+    })
+
+    $('#registerButton').on('click', function () {
         const data = {
-            'chests': chests,
-            'tables': tables,
-            'id': -1,
+            "user" : {
+                "fullName": $('#inputName').val(),
+                "description": $('#descriptionTextarea').val()
+            }
         }
 
-        let newRoomState = JSON.stringify(data);
-        console.log(newRoomState)
+        console.log(data)
 
-        var settings = {
-            "url": "https://easymeetup.herokuapp.com/newroom",
-            "method": "POST",
-            "timeout": 0,
-            "headers": {
-                "Content-Type": "application/json"
-            },
-            "data": JSON.stringify(data),
+        // const chests = []
+        // $('.seat-circle').each(function(i,elem) {
+        //     chests.push({
+        //         'chestId' : i,
+        //         'coordinates': $(elem).position(),
+        //         'free': true,
+        //         'user':{},
+        //     })
+        // });
+        //
+        // const tables = []
+        //
+        // $('.table-rectangle').each(function(i,elem) {
+        //     tables.push({
+        //         'coordinates': $(elem).position(),
+        //     })
+        // });
+        //
+        // const data = {
+        //     'chests': chests,
+        //     'tables': tables,
+        //     'id': -1,
+        // }
+        //
+        // let newRoomState = JSON.stringify(data);
+        // console.log(newRoomState)
+        //
+        //
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = JSON.stringify(data);
+
+        const requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            redirect: 'follow',
+            body: raw,
         };
 
-        $.ajax(settings).done(function (response) {
-            console.log(response);
-        });
+        const url = "https://easymeetup.herokuapp.com/room/" + roomId + "/" + choosenSeatId
 
-        // $.ajax ({
-        //     url: 'https://easymeetup.herokuapp.com/newroom',
-        //     type: 'POST',
-        //     headers: {
-        //
-        //     },
-        //     cache: false,
-        //     data: data,
-        //     success: function (response) {
-        //         alert(response)
-        //     }
-        // })
+        fetch(url, requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+
+
 
     })
 

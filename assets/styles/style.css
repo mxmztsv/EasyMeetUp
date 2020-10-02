@@ -70,12 +70,35 @@ header {
     background-color: #3F51B5;
     width: 200px;
     height: 100px;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+
     /*position: absolute;*/
 }
 
 .seat-circle {
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
+    border-radius: 25px;
+    background-color: #7986CB;
+    text-align: center;
+    color: white;
+}
+
+.seat-circle-taken {
+    width: 70px;
+    height: 70px;
+    border-radius: 25px;
+    background-color: #b71c1c;
+}
+
+.seat-circle-target {
+    width: 70px;
+    height: 70px;
+    border-radius: 25px;
+    border-color: #3F51B5;
+    border-width: 2px;
 }
 
 #draggable {font-size: x-large; border: thin solid black;
