@@ -162,10 +162,8 @@ const roomState = JSON.parse(localStorage.getItem('roomState'))
 
 
         const data = {
-            "user" : {
                 "fullName": name,
                 "description": descript
-            }
         }
 
         console.log(data)
