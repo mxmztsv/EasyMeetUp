@@ -2,8 +2,8 @@ $(document).ready(function () {
 
     console.log('Salam')
 
-// const roomId = localStorage.getItem('roomId')
-    const roomId = '306187'
+const roomId = localStorage.getItem('roomId')
+//     const roomId = '306187'
 // const test = localStorage.getItem('test')
 
     console.log(Number(roomId))
