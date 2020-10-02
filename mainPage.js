@@ -28,12 +28,12 @@ $(document).ready(function () {
             fetch(url, requestOptions)
                 .then(response => response.text())
                 .then(result => {
-                    console.log(result)
+                    // console.log(result)
                     if (result === "" || result === null || result === undefined) {
                         alert("Кажется команты с таким ID не существует : (")
                     } else {
                         const res = JSON.parse(result)
-                        alert(res)
+                        // alert(res)
                         localStorage.setItem('roomState', res);
                         const roomId = res.roomId
                         localStorage.setItem('roomId', roomId);
