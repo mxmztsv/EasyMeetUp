@@ -197,7 +197,7 @@ const roomId = localStorage.getItem('roomId')
             const id = chest.chestId
             const title = chest.free ? "" : "Здесь сидит: " + chest.user.fullName + "\n" + "Описание: " + chest.user.description
 
-            $('.main-field').append($(`<div class="object seat-circle" id="${id}" title="${title}" style="position: absolute; top: ${top}; left: ${left}; background-color: ${color}">${label}</div>`))
+            $('.main-field').append($(`<div class="object seat-circle" id="${id}" title="${title}" style="position: absolute; top: ${top}; left: ${left}; background-color: ${color}; text-overflow: ellipsis;">${label}</div>`))
         })
 
         let choosenSeatId;
@@ -248,7 +248,11 @@ const roomId = localStorage.getItem('roomId')
 
             fetch(url, requestOptions)
                 .then(response => response.text())
-                .then(result => console.log(result))
+                .then(result => {
+                    const message = result ? "Вы успешно зарегистрированы!" : "Ошибка! Похоже что место уже занято. Обновите страницу чтобы увидеть актуальную информацию."
+                    alert(message)
+                    $("#myModal1").modal('hide');
+                })
                 .catch(error => console.log('error', error));
 
 

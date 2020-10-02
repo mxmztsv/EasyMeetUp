@@ -28,17 +28,19 @@
             <div class="row d-flex align-items-center">
                 <div class="col-lg-2 text-center">
                     <div class="event-name-wrapper">
-                        <h1 class="">Event name</h1>
+                        <a href="/index.html"><h1 class="">EasyMeetUps</h1></a>
                     </div>
                 </div>
-                <div class="col-lg-8">
-                    <div class="stats-wrapper">
-                        <span>Full tables: 1 / 5</span>
-                        <span>Full tables: 1 / 5</span>
-                    </div>
+                <div class="col-lg-8 align-items-center text-center">
+                    <select class="object-select" id="object-select">
+                        <option value="table">Стол</option>
+                        <option value="seat">Стул</option>
+                    </select>
+                    <button class="btn add-btn" id="addObjectButton">ДОБАВИТЬ</button>
+                    <button class="btn add-btn" id="clearButton">ОТЧИСТИТЬ</button>
                 </div>
                 <div class="col-lg-1">
-                    <span>User Name</span>
+<!--                    <span>User Name</span>-->
                 </div>
                 <div class="col-lg-1 text-center">
                     <!--                <button class="btn btn-primary">LOG OUT</button>-->
@@ -55,92 +57,92 @@
                 <!--                Тулбар-->
 
 
-                <div class="toolbar col-3">
-                    <div class="object-list text-center">
-                        <select class="object-select" id="object-select">
-                            <option value="table">Table</option>
-                            <option value="seat">Seat</option>
-                        </select>
-                        <button class="btn add-btn" id="addObjectButton">ADD</button>
-                        <!--                        <h3>Object list</h3>-->
-                        <!--                        <div class="object-list__box">-->
+<!--                <div class="toolbar col-3">-->
+<!--                    <div class="object-list text-center">-->
+<!--                        <select class="object-select" id="object-select">-->
+<!--                            <option value="table">Table</option>-->
+<!--                            <option value="seat">Seat</option>-->
+<!--                        </select>-->
+<!--                        <button class="btn add-btn" id="addObjectButton">ADD</button>-->
+<!--                        &lt;!&ndash;                        <h3>Object list</h3>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        <div class="object-list__box">&ndash;&gt;-->
 
-                        <!--                            <button class="btn" id="addTableBtn"><img src="assets/img/rectangle.svg" ></button>-->
+<!--                        &lt;!&ndash;                            <button class="btn" id="addTableBtn"><img src="assets/img/rectangle.svg" ></button>&ndash;&gt;-->
 
-                        <!--                            <button class="btn" id="addSeatBtn"><img src="assets/img/circle.svg"></button>-->
-
-
-                        <!--                        </div>-->
-                    </div>
-                    <div class="guests-list text-center">
-                        <h3>Guests</h3>
-                        <div class="guests-list__box">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Имя</th>
-                                    <th scope="col">Фамилия</th>
-                                    <th scope="col"></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td><button type="button" class="btn-danger btn">х</button></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td><button type="button" class="btn btn-danger">х</button></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td><button type="button" class="btn btn-danger">х</button></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td><button type="button" class="btn btn-danger">х</button></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td><button type="button" class="btn btn-danger">х</button></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td><button type="button" class="btn btn-danger">Х</button></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!--                Поле-->
-
-                </div>
+<!--                        &lt;!&ndash;                            <button class="btn" id="addSeatBtn"><img src="assets/img/circle.svg"></button>&ndash;&gt;-->
 
 
-                <div class="main-field col-9">
+<!--                        &lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--                    </div>-->
+<!--                    <div class="guests-list text-center">-->
+<!--                        <h3>Guests</h3>-->
+<!--                        <div class="guests-list__box">-->
+<!--                            <table class="table">-->
+<!--                                <thead>-->
+<!--                                <tr>-->
+<!--                                    <th scope="col">#</th>-->
+<!--                                    <th scope="col">Имя</th>-->
+<!--                                    <th scope="col">Фамилия</th>-->
+<!--                                    <th scope="col"></th>-->
+<!--                                </tr>-->
+<!--                                </thead>-->
+<!--                                <tbody>-->
+<!--                                <tr>-->
+<!--                                    <th scope="row">1</th>-->
+<!--                                    <td>Mark</td>-->
+<!--                                    <td>Otto</td>-->
+<!--                                    <td><button type="button" class="btn-danger btn">х</button></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <th scope="row">2</th>-->
+<!--                                    <td>Jacob</td>-->
+<!--                                    <td>Thornton</td>-->
+<!--                                    <td><button type="button" class="btn btn-danger">х</button></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <th scope="row">3</th>-->
+<!--                                    <td>Larry</td>-->
+<!--                                    <td>the Bird</td>-->
+<!--                                    <td><button type="button" class="btn btn-danger">х</button></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <th scope="row">3</th>-->
+<!--                                    <td>Larry</td>-->
+<!--                                    <td>the Bird</td>-->
+<!--                                    <td><button type="button" class="btn btn-danger">х</button></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <th scope="row">3</th>-->
+<!--                                    <td>Larry</td>-->
+<!--                                    <td>the Bird</td>-->
+<!--                                    <td><button type="button" class="btn btn-danger">х</button></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <th scope="row">3</th>-->
+<!--                                    <td>Larry</td>-->
+<!--                                    <td>the Bird</td>-->
+<!--                                    <td><button type="button" class="btn btn-danger">Х</button></td>-->
+<!--                                </tr>-->
+<!--                                </tbody>-->
+<!--                            </table>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                    &lt;!&ndash;                Поле&ndash;&gt;-->
+
+<!--                </div>-->
+
+
+                <div class="main-field col-12">
 
 
 
                     <!--                <img src="https://en.js.cx/clipart/soccer-gate.svg" id="gate" class="droppable">-->
-                    <img src="assets/img/trash_bin.svg" id="gate" class="trash-bin droppable">
+<!--                    <img src="assets/img/trash_bin.svg" id="gate" class="trash-bin droppable">-->
 
                     <!-- Кнопка запуска модального окна -->
-                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                        Create room
+                    <button type="button" class="create-btn" data-toggle="modal" data-target="#myModal" id="openModaleCreateButton">
+                        СОЗДАТЬ КОМНАТУ
                     </button>
 
                     <!-- Модальное окно -->
@@ -161,7 +163,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-                                    <button type="button" class="btn btn-primary" id="createRoomButton">Создать</button>
+                                    <button type="button" class="btn btn-primary" id="createRoomButton" data-dismiss="modal">Создать</button>
                                 </div>
                             </div>
                         </div>

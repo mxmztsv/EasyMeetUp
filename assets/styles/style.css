@@ -2,6 +2,19 @@ body {
     background-color: #BBDEFB;
 }
 
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:visited {
+    color: white;
+    text-decoration: none;}
+a:hover {
+    color: white;
+    text-decoration: none;
+}
+
 header {
     background-color: #3F51B5;
     height: 60px;
@@ -9,28 +22,52 @@ header {
 }
 
 .main-field {
-    background-color: aqua;
+    /*background-color: aqua; */
+    min-height: calc(100vh - 60px);
+    overflow: hidden;
+}
+
+.event-name-wrapper {
+
 }
 
 .page {
     max-height: 100vh;
 }
 
-.main-field {
+#openModaleCreateButton {
+    margin: 20px;
 }
 
 .object-select {
-    color: #00897B;
+    margin: 5px;
+    color: #303F9F;
     outline: none;
     border: none;
     text-decoration: none;
     border-radius: 16px;
-    background: #80CBC4;
+    width: 100px;
+    height: 30px;
+    background: #E8EAF6;
+}
+
+.create-btn {
+    background-color: #303F9F;
+    font-weight: bold;
+    color: white;
+    width: 200px;
+    height: 70px;
+    margin: 0 10px;
+    vertical-align: middle;
+    border: none;
+    border-radius: 15px;
 }
 
 .add-btn {
-    background-color: #3F51B5;
+    background-color: #C5CAE9;
+    color: #303F9F;
     margin: 0 10px;
+    vertical-align: middle;
 }
 
 .stats-wrapper {
@@ -78,8 +115,8 @@ header {
 }
 
 .seat-circle {
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
     border-radius: 25px;
     background-color: #7986CB;
     text-align: center;
@@ -87,18 +124,21 @@ header {
 }
 
 .seat-circle-taken {
-    width: 70px;
-    height: 70px;
     border-radius: 25px;
     background-color: #b71c1c;
 }
 
 .seat-circle-target {
-    width: 70px;
-    height: 70px;
+
     border-radius: 25px;
     border-color: #3F51B5;
     border-width: 2px;
+}
+
+.object {
+    position: absolute;
+    top: 70px;
+    left: 100px;
 }
 
 #draggable {font-size: x-large; border: thin solid black;

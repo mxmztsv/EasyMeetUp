@@ -5,7 +5,7 @@ $(document).ready(function () {
         console.log(selectedObject)
         switch (selectedObject) {
             case 'table':
-                $('.main-field').append($('<div class="object table-rectangle">Table</div>').draggable({
+                $('.main-field').append($('<div class="object table-rectangle">Стол</div>').draggable({
                     start: function() {
 
                     },
@@ -17,7 +17,7 @@ $(document).ready(function () {
                 ))
                 break;
             case 'seat':
-                $('.main-field').append($('<div class="object seat-circle"><img src="assets/img/circle.svg"></div>').draggable({
+                $('.main-field').append($('<div class="object seat-circle"></div>').draggable({
                     start: function() {
 
                     },
@@ -29,6 +29,10 @@ $(document).ready(function () {
                 break;
         }
 
+    })
+
+    $('#clearButton').on('click', function () {
+        location.reload();
     })
 
     $('#createRoomButton').on('click', function () {
@@ -75,7 +79,12 @@ $(document).ready(function () {
 
         fetch("https://easymeetup.herokuapp.com/newroom", requestOptions)
             .then(response => response.text())
-            .then(result => console.log(result))
+            .then(result => {
+                console.log(typeof result)
+                const message = typeof result ? "Комната успешно создана, ее номер: " + result : "Ошибка создания комнаты, кажется что то пошло не так..."
+                alert(message)
+                $("#myModal").modal('hide');
+            })
             .catch(error => console.log('error', error));
 
         // var settings = {
