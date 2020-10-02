@@ -3,7 +3,7 @@ $(document).ready(function () {
 const roomId = localStorage.getItem('roomId')
 // const test = localStorage.getItem('test')
 
-    getRoomStateAndRender(roomId)
+    getRoomStateAndRender(Number(roomId))
 
     // console.log(roomState)
 
