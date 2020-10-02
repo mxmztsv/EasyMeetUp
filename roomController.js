@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-const roomState = JSON.parse(sessionStorage.getItem('roomState'))
+const roomState = JSON.parse(localStorage.getItem('roomState'))
 // const test = localStorage.getItem('test')
 
     console.log(roomState)
@@ -153,10 +153,18 @@ const roomState = JSON.parse(sessionStorage.getItem('roomState'))
     })
 
     $('#registerButton').on('click', function () {
+
+        const name = $('#inputName').val()
+        const descript = $('#descriptionTextarea').val()
+
+        console.log(name)
+        console.log(descript)
+
+
         const data = {
             "user" : {
-                "fullName": $('#inputName').val(),
-                "description": $('#descriptionTextarea').val()
+                "fullName": name,
+                "description": descript
             }
         }
 

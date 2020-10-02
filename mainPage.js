@@ -32,7 +32,7 @@ $(document).ready(function () {
                     if (result === "" || result === null || result === undefined) {
                         alert("Кажется команты с таким ID не существует : (")
                     } else {
-                        sessionStorage.setItem('roomState', result);
+                        localStorage.setItem('roomState', result);
                         document.location.href = "/room.html";
                     }
                 })
