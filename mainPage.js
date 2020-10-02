@@ -32,9 +32,12 @@ $(document).ready(function () {
                     if (result === "" || result === null || result === undefined) {
                         alert("Кажется команты с таким ID не существует : (")
                     } else {
-                        alert(result)
-                        localStorage.setItem('roomState', result);
-                        alert(localStorage.getItem('roomState'))
+                        const res = JSON.parse(result)
+                        alert(res)
+                        localStorage.setItem('roomState', res);
+                        const roomId = res.roomId
+                        localStorage.setItem('roomId', roomId);
+                        // alert(localStorage.getItem('roomState'))
                         document.location.href = "/room.html";
                     }
                 })

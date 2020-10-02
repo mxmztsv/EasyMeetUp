@@ -1,9 +1,11 @@
 $(document).ready(function () {
 
-const roomState = JSON.parse(localStorage.getItem('roomState'))
+const roomId = localStorage.getItem('roomId')
 // const test = localStorage.getItem('test')
 
-    console.log(roomState)
+    getRoomStateAndRender(roomId)
+
+    // console.log(roomState)
 
     // const roomState = {
     //     "roomId": 464417,
@@ -109,33 +111,96 @@ const roomState = JSON.parse(localStorage.getItem('roomState'))
     //         {"coordinates":{"top":338,"left":619}}],
     // };
 
-    const roomName = roomState.roomName;
-    const roomId = roomState.roomId;
-    const chests = roomState.chests;
-    const tables = roomState.tables;
+    function getRoomStateAndRender(roomId) {
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
 
-    $('#roomId').text(roomId)
-    $('#eventName').text(roomName)
+        // const raw = JSON.stringify(data);
 
-    tables.forEach(function (table, i, tables) {
-        console.log('coords', table.coordinates)
-        const top = table.coordinates.top + 'px'
-        const left = table.coordinates.left + 'px'
+        const requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow',
+        };
 
-        $('.main-field').append($(`<div class="object table-rectangle" style="position: absolute; top: ${top}; left: ${left}">Table</div>`))
-    })
+        const url = "https://easymeetup.herokuapp.com/room/" + roomId
 
-    chests.forEach(function (chest, i, chests) {
-        console.log('coords', chest.coordinates)
-        const top = chest.coordinates.top + 'px'
-        const left = chest.coordinates.left + 'px'
-        const label = chest.free ? "": chest.user.fullName
-        const color = chest.free ? '#7986CB' : '#b71c1c'
-        const id = chest.chestId
-        const title = chest.free ? "" : "Здесь сидит: " + chest.user.fullName + "\n" + "Описание: " + chest.user.description
+        fetch(url, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                console.log(result)
+                if (result === "" || result === null || result === undefined) {
+                    alert("Кажется команты с таким ID не существует : (")
+                } else {
+                    const res = JSON.parse(result)
+                    alert(typeof res)
+                    localStorage.setItem('roomState', res);
+                    alert(localStorage.getItem('roomState'))
+                    renderRoom(res)
+                }
+            })
+            .catch(error => console.log('error', error));
+    }
 
-        $('.main-field').append($(`<div class="object seat-circle" id="${id}" title="${title}" style="position: absolute; top: ${top}; left: ${left}; background-color: ${color}">${label}</div>`))
-    })
+    function renderRoom(roomState) {
+        const roomName = roomState.roomName;
+        console.log(roomName)
+        const roomId = roomState.roomId;
+        console.log(roomId)
+        const chests = roomState.chests;
+        const tables = roomState.tables;
+
+        $('#roomId').text(roomId)
+        $('#eventName').text(roomName)
+
+        tables.forEach(function (table, i, tables) {
+            console.log('coords', table.coordinates)
+            const top = table.coordinates.top + 'px'
+            const left = table.coordinates.left + 'px'
+
+            $('.main-field').append($(`<div class="object table-rectangle" style="position: absolute; top: ${top}; left: ${left}">Table</div>`))
+        })
+
+        chests.forEach(function (chest, i, chests) {
+            console.log('coords', chest.coordinates)
+            const top = chest.coordinates.top + 'px'
+            const left = chest.coordinates.left + 'px'
+            const label = chest.free ? "": chest.user.fullName
+            const color = chest.free ? '#7986CB' : '#b71c1c'
+            const id = chest.chestId
+            const title = chest.free ? "" : "Здесь сидит: " + chest.user.fullName + "\n" + "Описание: " + chest.user.description
+
+            $('.main-field').append($(`<div class="object seat-circle" id="${id}" title="${title}" style="position: absolute; top: ${top}; left: ${left}; background-color: ${color}">${label}</div>`))
+        })
+    }
+
+    // const roomName = roomState.roomName;
+    // const roomId = roomState.roomId;
+    // const chests = roomState.chests;
+    // const tables = roomState.tables;
+    //
+    // $('#roomId').text(roomId)
+    // $('#eventName').text(roomName)
+    //
+    // tables.forEach(function (table, i, tables) {
+    //     console.log('coords', table.coordinates)
+    //     const top = table.coordinates.top + 'px'
+    //     const left = table.coordinates.left + 'px'
+    //
+    //     $('.main-field').append($(`<div class="object table-rectangle" style="position: absolute; top: ${top}; left: ${left}">Table</div>`))
+    // })
+    //
+    // chests.forEach(function (chest, i, chests) {
+    //     console.log('coords', chest.coordinates)
+    //     const top = chest.coordinates.top + 'px'
+    //     const left = chest.coordinates.left + 'px'
+    //     const label = chest.free ? "": chest.user.fullName
+    //     const color = chest.free ? '#7986CB' : '#b71c1c'
+    //     const id = chest.chestId
+    //     const title = chest.free ? "" : "Здесь сидит: " + chest.user.fullName + "\n" + "Описание: " + chest.user.description
+    //
+    //     $('.main-field').append($(`<div class="object seat-circle" id="${id}" title="${title}" style="position: absolute; top: ${top}; left: ${left}; background-color: ${color}">${label}</div>`))
+    // })
 
     let choosenSeatId;
 
