@@ -1,6 +1,11 @@
+// Контроллер страницы создания новой комнаты.
+
 $(document).ready(function () {
 
     $('#addObjectButton').on('click', function () {
+
+        // Добавление нового объекта в комнату
+
         const selectedObject = $('#object-select').val()
         console.log(selectedObject)
         switch (selectedObject) {
@@ -32,10 +37,16 @@ $(document).ready(function () {
     })
 
     $('#clearButton').on('click', function () {
+
+        // Очистка комнаты (по факту перезагрузка страницы)
+
         location.reload();
     })
 
     $('#createRoomButton').on('click', function () {
+
+        // Формирования состояния комнаты в json и отправка на сервер
+
         const chests = []
         $('.seat-circle').each(function(i,elem) {
             chests.push({

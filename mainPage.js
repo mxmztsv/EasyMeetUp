@@ -1,21 +1,31 @@
+// Контроллер домашней страницы
+
+
 $(document).ready(function () {
 
     $('#createRoomButton').on('click', function () {
+
+        // Переход на стрицу создания комнаты
+
         document.location.href = "/newroom.html";
     })
 
     $('#followRoomButton').on('click', function () {
 
+        // Получение от сервера состояния комнаты по ее номеру (Проверяем, существует ли она)
+        // кладем номер комнаты и ее состояние в localStorage
+
         const roomId = Number($('#roomIdInput').val().trim())
 
         console.log(roomId)
-        // sessionStorage.setItem('roomId', roomId);
 
         if (!isNaN(roomId) && roomId !== "") {
+
+            // Валидация поля ввода номера комнаты и отправка запроса
+
             const myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
 
-            // const raw = JSON.stringify(data);
 
             const requestOptions = {
                 method: 'GET',

@@ -1,3 +1,7 @@
+// Контроллер комнаты.
+// осуществляет получение состояние комнаты с сервера и отрисовку всех объектов
+
+
 $(document).ready(function () {
 
 const roomId = localStorage.getItem('roomId')
@@ -6,11 +10,13 @@ const roomId = localStorage.getItem('roomId')
 
     getRoomStateAndRender(Number(roomId))
 
+
     function getRoomStateAndRender(roomId) {
+
+    // Функция получения состояние комнаты с сервера и отрисовки всех объектов
+
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-
-        // const raw = JSON.stringify(data);
 
         const requestOptions = {
             method: 'GET',
@@ -38,6 +44,9 @@ const roomId = localStorage.getItem('roomId')
     }
 
     function renderRoom(roomState) {
+
+    // Функция отрисовки объектов в комнате
+
         const roomName = roomState.roomName;
         console.log(roomName)
         const roomId = roomState.roomId;
@@ -82,6 +91,8 @@ const roomId = localStorage.getItem('roomId')
         })
 
         $('#registerButton').on('click', function () {
+
+            //Отправка регистрации на стул
 
             const name = $('#inputName').val().trim()
             const descript = $('#descriptionTextarea').val().trim()
